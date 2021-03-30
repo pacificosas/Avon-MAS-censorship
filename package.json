@@ -1,7 +1,7 @@
 {
-  "name": "avon-ruleta-cdn",
+  "name": "avon-mas-censorship",
   "version": "1.0.0",
-  "description": "Script de cliente para proyecto de Ruleta Avon",
+  "description": "",
   "main": "dist/js/index.js",
   "scripts": {
     "dev": "webpack --config webpack.config.develop.js",
