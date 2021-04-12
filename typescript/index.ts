@@ -10,4 +10,3 @@ declare global {
 
 window.productCensorship=productCensorship
 window.inteligenseSearchCensorship=inteligenseSearchCensorship
-inteligenseSearchCensorship("8 en 1")
