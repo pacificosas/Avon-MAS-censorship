@@ -6,41 +6,41 @@ import { productEventCleaner } from "./tools/productEventCleaner";
 
 
 
+var reader=null;
+var currentProducts=[];
 export function detailCensorship(pathname:string){
     
-    if( !window.location.pathname.match( new RegExp(pathname) ) ){
+    if( !window.location.pathname.toLowerCase().match( new RegExp(pathname.toLowerCase()) ) ){
        return;
     }
     console.log("detail");
     
 
-    var reader;
+
     var timer=setInterval(()=>{
         
         if(document.readyState =="interactive" && !env.reader){
-            reader=viewReader(new IappConfig(),()=>{productEventCleaner});
+            reader=viewReader(new IappConfig(),productEventCleaner);
   
         } 
         if(document.readyState == "complete"){
             
             if(!reader){
-                productEventCleaner()
+                reader=viewReader(new IappConfig(),productEventCleaner)
             }else{
-                reader.disconnect()
             }
             
             document.querySelectorAll(".PagingButtons a").forEach(item=>{
-                console.log("click");
                 
                 item.addEventListener("click",()=>{
                     viewReader(new IappConfig(),productEventCleaner)
                 })
             })
-
             clearInterval(timer)
         }
     },500)
 
 
 }
+
 
