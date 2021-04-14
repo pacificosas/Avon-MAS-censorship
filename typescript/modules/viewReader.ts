@@ -2,7 +2,7 @@ import { env } from "../env";
 import { IappConfig } from "../models/appConfig";
 import { productEraser } from "../tools/productEraser.tool";
 
-export function viewReader(opts:IappConfig){
+export function viewReader(opts:IappConfig,action:Function){
 
    
     
@@ -15,7 +15,7 @@ export function viewReader(opts:IappConfig){
             if( products.length> 0){
                     try {
 
-                            productEraser(products,opts);
+                            action(products,opts);
                     } catch (error) {
                         console.error("viewReader: error while erasing products", error)
                     }

@@ -2,33 +2,38 @@ import { env } from "./env";
 import { IappConfig } from "./models/appConfig";
 import { viewReader } from "./modules/viewReader";
 import { productEraser } from "./tools/productEraser.tool";
+import { productEventCleaner } from "./tools/productEventCleaner";
 
-export function productCensorship(opts:IappConfig){
+
+
+export function detailCensorship(pathname:string){
     
-    if( !window.location.pathname.match( new RegExp(opts.pathname) ) ){
+    if( !window.location.pathname.match( new RegExp(pathname) ) ){
        return;
     }
+    console.log("detail");
+    
 
-   
+    var reader;
     var timer=setInterval(()=>{
         
         if(document.readyState =="interactive" && !env.reader){
-            env.reader=viewReader(opts,productEraser);
+            reader=viewReader(new IappConfig(),()=>{productEventCleaner});
   
         } 
         if(document.readyState == "complete"){
             
-            if(!env.reader){
-                productEraser(env.products,opts)
+            if(!reader){
+                productEventCleaner()
             }else{
-                env.reader.disconnect()
+                reader.disconnect()
             }
             
             document.querySelectorAll(".PagingButtons a").forEach(item=>{
                 console.log("click");
                 
                 item.addEventListener("click",()=>{
-                    viewReader(opts,productEraser)
+                    viewReader(new IappConfig(),productEventCleaner)
                 })
             })
 
