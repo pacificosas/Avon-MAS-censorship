@@ -3,6 +3,7 @@ const path = require('path');
 
 module.exports = {
   mode: "production",
+  target: 'es5',
   entry: {
     main: "./typescript/index.ts",
   },
