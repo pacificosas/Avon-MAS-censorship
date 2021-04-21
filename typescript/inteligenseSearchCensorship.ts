@@ -14,7 +14,7 @@ export function inteligenseSearchCensorship(pattern:string) {
 
                                 if(itemName.innerHTML.toLowerCase().match(new RegExp(pattern.toLowerCase()))){
                                     // console.log("inteligese: se remueve un producto", item);
-                                    item.remove()
+                                   remove(item)
                                 }else{
                                     // console.log("inteligese: se ignora", item);
                                 }
@@ -34,4 +34,13 @@ export function inteligenseSearchCensorship(pattern:string) {
         childList: true, subtree: true
     });
 
+}
+
+
+function remove(element){
+    try{
+        element.remove()
+    }catch{
+        element.parentElement.removeChild(element);
+    }
 }
