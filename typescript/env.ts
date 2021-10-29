@@ -4,7 +4,7 @@ export const env={
         return document.querySelector(".ProductList")
     },
     get products(){
-        return this.productsContainer.querySelectorAll(".ProductListCell")
+        return Array.from(this.productsContainer.querySelectorAll(".ProductListCell"))
     }
 
     
